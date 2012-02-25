@@ -926,7 +926,6 @@ function twittSeven() {
 			div.promoted-tweet{
 				display:none !important;
 			}
-
 			/* 隐藏打开关闭 open close 按钮 */
 			.action-open-container .close-tweet, .action-open-container .open-tweet, .action-open-container .separator{
 				display:none !important;
