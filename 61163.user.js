@@ -900,6 +900,7 @@ function twittSeven() {
 	
 	//-------------- customCSS() -------------------
 	function customCSS(){
+		GM_addStyle('.promoted-tweet{}')
 		// 把时间线上的第一个推加上 LastTweet Class
 		$('#stream-items-id .stream-item:first').addClass('LastTweet');
 		// 把时间线上的最后一个推加上 olddestTweet Class
@@ -921,6 +922,11 @@ function twittSeven() {
 	    }
 	    
 		GM_addStyle((<r><![CDATA[
+			/* 隐藏 promoted-tweet */
+			div.promoted-tweet{
+				display:none !important;
+			}
+
 			/* 隐藏打开关闭 open close 按钮 */
 			.action-open-container .close-tweet, .action-open-container .open-tweet, .action-open-container .separator{
 				display:none !important;
