@@ -107,6 +107,8 @@ function twittSeven() {
 	var hideActionBarTooltips = localStorage.getItem('hideActionBarTooltips') || 'true';
 	var filteList = localStorage.getItem('filteList') || '';
 	var exchangeUsernameAndFullname = localStorage.getItem('exchangeUsernameAndFullname') || 'true';
+
+	var isGkeyPress = false;
 	
 	var interid, inReplyTimeId, stateTimeId, curScr;
 	var delid = 0, lastid = 0, ts_unread = 0;
@@ -760,6 +762,14 @@ function twittSeven() {
 				else ele['on' +type] = false;
 			}
 		}
+		// 如果按下 G，就把 isGkeyPress 赋值为 true
+		shortcut.add("G",function() {
+			isGkeyPress = true;
+    		setTimeout(function(){
+				isGkeyPress = false;
+			}, 1200);
+		});
+
 		//回复
 		shortcut.add("R",function() {
 			$(".currenttweet .js-action-reply").trigger('click');
@@ -770,7 +780,10 @@ function twittSeven() {
 		});
 		//收藏，加星
 		shortcut.add("S",function() {
-			$(".currenttweet .js-toggle-fav").trigger('click');
+			if (isGkeyPress)
+				isGkeyPress = false;
+			else
+				$(".currenttweet .js-toggle-fav").trigger('click');
 		});
 		//选中下一个推
 		shortcut.add("J",function() {
@@ -853,8 +866,10 @@ function twittSeven() {
 
 		//F 官方 RT 或者 undo
 		shortcut.add("F",function() {
-			$(".currenttweet .js-toggle-rt b").trigger('click');
-			//$(".twttr-dialog-wrapper").hide();
+			if (isGkeyPress)
+				isGkeyPress = false;
+			else
+				$(".currenttweet .js-toggle-rt b").trigger('click');
 		});
 		//E 发送到 Evernote
 		shortcut.add("E",function() {
