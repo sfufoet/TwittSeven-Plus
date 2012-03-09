@@ -2,7 +2,7 @@
 // @name           TwittSeven Plus
 // @namespace      http://userscripts.org/scripts/show/61163
 // @description    Auto-refresh Twitter timeline, override Twitter's stupid keyboard shortcuts and many more enhancements.
-// @version        5.09
+// @version        5.11
 // @author         sfufoet(http://blog.loland.net/)
 // @include        http://twitter.com/*
 // @include        https://twitter.com/*
@@ -18,7 +18,7 @@ var updater_61163 = {
     id:        "61163",
     name:      "TwittSeven Plus",
     uso_ver:   397350,
-    version:   "5.09",
+    version:   "5.11",
     interval:  12 * 3600 * 1000,
     lang:      "en",
     str:       {
@@ -1435,9 +1435,6 @@ function twittSeven() {
 					}
 				}
 			}
-			// 判断是否在首页
-//			if($('#global-nav-home').hasClass("active")) 
-//				isHome = true;
 
 			//翻页或者tweet载入完毕会触发这个事件
 			if(event.target.className.indexOf("stream-loading") !== -1){
@@ -1466,7 +1463,7 @@ function twittSeven() {
 				updateClass();
 			}
 		}).bind('DOMNodeInserted', function(event) {
-			if(event.target.className.indexOf("module trends component") !== -1){
+			if(event.target.className.indexOf("trends") !== -1){
 				// 开始自动翻页
 				if($('#global-nav-home').hasClass("active")){
 					gotoLastView();
@@ -1498,42 +1495,7 @@ function twittSeven() {
 				}
 				updateClass();
 			}
-//			if($('#global-nav-home').hasClass("active") == false){
-//				// 在 connect 或者搜索页面
-//				if(event.target.className.indexOf("stream-loading") !== -1){
-//					if($('.ts-mute-component').html() == null){
-//						//插入 mute list
-//						$('.dashboard .component:first').after('<div class="component ts-mute-component"><div class="module"><div class="flex-module"><div class="flex-module-header"><h3>Muted List</h3></div><div data-section-id="wtf" class="js-recommended-followers flex-module-inner"><div id="ts-mute"></div></div></div></div></div>');
-//						$('.ts-mute-component').hide();
-//					}
-//					//插入过滤功能
-//					if($('#ts_filter').html() == null){
-//						$('.ts-mute-component').after('<div class="component" ><div id="ts_filter"><div class="module"><div class="flex-module"><div class="flex-module-header"><h3>Filter: </h3> <form id="ts_filter_form" action="javascript:void 0;"><span><span class="glass" id="ts_filter_button"><i></i></span><input type="text" id="ts_add_filter" size="45"/></span></form></div><div data-section-id="wtf" class="js-recommended-followers flex-module-inner">' +
-//							'<div id="ts_filter_list"><ol>' + filteList + '</ol></div>'+
-//							'</div></div></div></div>');
-//						if(filteList == '')
-//							$('#ts_filter_list').hide();
-//						alert("ASd");
-//						//过滤时间线上的推。
-//					    $('.js-stream-item').each(function(){
-//					    	var ts_current_tweet=$(this);
-//							$('#ts_filter_list input:checked').each(function(){
-//								if(ts_current_tweet.find('.js-tweet-text').html().indexOf($(this).next().html()) !== -1){
-//									ts_current_tweet.remove();
-//									return false
-//								}
-//							});
-//						});
-//						updateClass();
-//					}
-//				}
-//			}
-			// 在首页
-			if($('#global-nav-home').hasClass("active")){
-				if($('.mini-profile .twitter-anywhere-tweet-box-editor').html() !== null){
-					
-				}
-			}
+
 			// 自动点击官方 retweet 按钮。
 			if(event.target.className.indexOf("tweet twttr-dialog-reply-footer") !== -1){
 				$('.js-prompt-ok').trigger('click');
