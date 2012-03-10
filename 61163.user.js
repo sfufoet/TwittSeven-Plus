@@ -8,7 +8,8 @@
 // @include        https://twitter.com/*
 // ==/UserScript==
 
-//检查新版本的函数
+// 检查新版本的函数
+// Check new version, modify from Userscript Updater Generator
 /***********************************************
         Userscript Updater Generator
                         by ΙδεΠD
